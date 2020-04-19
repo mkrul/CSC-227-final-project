@@ -1,12 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-var isEmail = (email) => {
-  var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-
-  return re.test(email)
-}
-
 var isWakeTechEmail = (email) => {
   var re = /^\w+([\.-]?\w+)*@(\w+([\.-]?\w+))?(waketech|my.waketech)\.edu$/
 
@@ -20,7 +14,7 @@ const Email = new Schema(
       required: true,
       unique: true, 
       lowercase: true,
-      validate: [{ validator: v => isEmail(v), msg: 'Must be a valid email address' }],
+      validate: [{ validator: v => isWakeTechEmail(v), msg: 'Must be a valid Wake Tech email address' }],
     }
   },
   { versionKey: false },
